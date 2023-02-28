@@ -2,10 +2,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: cursive;
 }
 
 main {
     flex: 2;
+    background: linear-gradient(180deg, #EBF1F1 60%, white 40%)
 }
 
 section {

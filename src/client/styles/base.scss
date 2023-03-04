@@ -14,3 +14,26 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+img{
+    width: -webkit-fill-available;
+}
+#text{
+    margin-bottom: 10px;
+}
+#date_text{
+    margin-bottom: 10px;
+}
+#results{
+    margin-top: 10px;
+}
+#result_section{
+    display: none;
+}
+#back{
+    width: 100%;
+    padding: 6px;
+    margin-top: 6px;
+    background: #2a2929;
+    color: #fee91f;
+    font-family: cursive;
+}

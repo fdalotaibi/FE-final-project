@@ -40,7 +40,7 @@ function getData() {
             var body = Buffer.concat(chunks);
             console.log("response? ", body.toString());
             let res = JSON.parse(body.toString())
-            document.getElementById('results').innerHTML += ` subjectivity? ${res.subjectivity}, part of the sentence you typed:  ${res.sentence_list[0].text}, polarity: ${res.sentence_list[0].segment_list[0].polarity_term_list.toString()}`
+            //document.getElementById('results').innerHTML += ` subjectivity? ${res.subjectivity}, part of the sentence you typed:  ${res.sentence_list[0].text}, polarity: ${res.sentence_list[0].segment_list[0].polarity_term_list.toString()}`
 
         });
 

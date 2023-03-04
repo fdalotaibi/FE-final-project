@@ -22,9 +22,8 @@
 
     <main>
         <section>Plan your next trip!</section>
-        <section>
+        <section id="form_section">
             <form class="" onsubmit="return Client.handleSubmit(event)">
-                <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="please fill the form">
                 <input id="long" type="text" name="long" value="" placeholder="24.774265">
                 <input id="lat" type="text" name="lat" value="" placeholder="46.738586">
                 <input id="country" type="country" name="country" value="" placeholder="france">
@@ -35,9 +34,18 @@
             </form>
         </section>
 
-        <section>
-            <strong>Form Results:</strong>
-            <div id="results"></div>
+        <section id="result_section" >
+            <strong id="text"> </strong>
+            <p id="date_text"> </p>
+            <p id="countdown"> </p>
+            <p id="temp"> </p>
+            <p id="weather"> </p>
+
+            <div id="results">
+                <img id ="city_img" src="" alt="img">
+            </div>
+
+            <button id="back">back</button>
         </section>
     </main>
 

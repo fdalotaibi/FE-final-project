@@ -12,10 +12,11 @@ const today_string = `${today.getDate()} -  ${today.getMonth() + 1} - ${today.ge
 const baseURL = 'http://api.geonames.org/findNearByWeatherJSON?'
 // weatherbit key
 const weatherbitURL = 'https://api.weatherbit.io/v2.0/forecast/daily?city='
-const pixabayURL = 'https://pixabay.com/api/?key=33988961-9448703568f7eb5456f40e711&q=yellow+flowers&image_type=photo&pretty=true'
+const pixabayURL = 'https://pixabay.com/api/?key=33988961-9448703568f7eb5456f40e711&q='
+let img_url
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
-
+document.getElementById('back').addEventListener('click', showForm)
 /* Function called by event listener */
 function performAction(e) {
     console.log("clicked");
@@ -25,6 +26,8 @@ function performAction(e) {
             console.log("result 2 ", getWeatherbitResponse);
             getPix(pixabayURL).then(() => {
                 console.log("result 3 ", pixResponse);
+                document.getElementById("form_section").style.display = 'none'
+                document.getElementById("result_section").style.display = 'block'
 
             })
         })
@@ -59,6 +62,9 @@ const getWeatherbit = async (weatherbitURL, apiKey) => {
     const country = document.getElementById("country").value
     const date = document.getElementById('date').value
 
+    document.getElementById("text").innerText = 'My next trip is to: ' + city + ' , ' + country
+    document.getElementById("date_text").innerText = 'Departing: ' + date
+
     // calculate duration
     let date1 = new Date(date)
     // today
@@ -67,10 +73,11 @@ const getWeatherbit = async (weatherbitURL, apiKey) => {
     // To calculate the time difference of two dates· ·
     let Difference_In_Time = date1.getTime() - date2.getTime()
     // To calculate the no. of days between two dates· · ·
-    let Difference_In_Days =Math.floor( Difference_In_Time / (1000 * 3600 * 24));
+    let Difference_In_Days = Math.floor(Difference_In_Time / (1000 * 3600 * 24));
     Difference_In_Days = Difference_In_Days + 1
     console.log("Difference_In_Days: ", Difference_In_Days);
 
+    document.getElementById("countdown").innerHTML = Difference_In_Days + ' days from now'
 
     const res = await fetch(`${weatherbitURL}${city}&country=${country}&days=${Difference_In_Days}&key=${apiKey}`)
     try {
@@ -78,6 +85,8 @@ const getWeatherbit = async (weatherbitURL, apiKey) => {
         const data = await res.json();
         console.log(data)
         getWeatherbitResponse = data
+        document.getElementById("temp").innerText = 'High: ' + getWeatherbitResponse.data[0].high_temp + ' Low: ' + getWeatherbitResponse.data[0].low_temp
+        document.getElementById("weather").innerHTML = getWeatherbitResponse.data[0].weather.description
         return data;
     } catch (error) {
         console.log("error", error);
@@ -85,18 +94,27 @@ const getWeatherbit = async (weatherbitURL, apiKey) => {
     }
 }
 const getPix = async (pixabayURL) => {
-    //const city = document.getElementById("city").value
-    const res = await fetch(`${pixabayURL}`)
+    const city = document.getElementById("city").value
+    const res = await fetch(`${pixabayURL}${city}&image_type=photo&pretty=true`)
     try {
 
         const data = await res.json();
         console.log(data)
         pixResponse = data
+        img_url = data.hits[0].largeImageURL
+        if (img_url)
+            document.getElementById("city_img").src = img_url
+        console.log("img ", document.getElementById("city_img"));
         return data;
     } catch (error) {
         console.log("error", error);
         // appropriately handle the error
     }
+}
+
+function showForm() {
+    document.getElementById("form_section").style.display = 'block';
+    document.getElementById("result_section").style.display = 'none';
 }
 /* Function to GET Project Data */
 // const getProjectData = async (url = '') => {
@@ -157,6 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // date.setAttribute("min", today);
 
-  
-  })
+
+})
 export { performAction }

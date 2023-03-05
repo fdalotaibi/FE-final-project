@@ -14,8 +14,8 @@
 <body>
 
     <header>
-        <div >
-            Traveler 
+        <div>
+            Traveler
         </div>
 
     </header>
@@ -28,21 +28,41 @@
                 <input id="lat" type="text" name="lat" value="" placeholder="46.738586">
                 <input id="country" type="country" name="country" value="" placeholder="france">
                 <input id="city" type="city" name="city" value="" placeholder="paris">
-                <input id="date" type="date" name="date" value="" onfocus="this.min=new Date().toISOString().split('T')[0]">
+                <input id="date" type="date" name="date" value=""
+                    onfocus="this.min=new Date().toISOString().split('T')[0]">
                 <input id="generate" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
                     onsubmit="return Client.handleSubmit(event)">
             </form>
         </section>
 
-        <section id="result_section" >
-            <strong id="text"> </strong>
-            <p id="date_text"> </p>
-            <p id="countdown"> </p>
-            <p id="temp"> </p>
-            <p id="weather"> </p>
+        <section id="result_section">
+            <table>
+                <tr>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Countdown</th>
+                </tr>
+
+                <tr>
+                    <td><span id="text"></span></td>
+                    <td> <span id="date_text"></span></td>
+                    <td><span id="countdown"></span></td>
+                </tr>
+                <tr>
+                    <th>Tempreture [Hight]</th>
+                    <th>Tempreture [Low]</th>
+                    <th>Weather Description</th>
+                </tr>
+
+                <tr>
+                    <td ><span id="high"></span></td>
+                    <td><span id="low"></span></td>
+                    <td> <span id="weather"></span></td>
+                </tr>
+            </table>
 
             <div id="results">
-                <img id ="city_img" src="" alt="img">
+                <img id="city_img" src="" alt="img">
             </div>
 
             <button id="back">back</button>

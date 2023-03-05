@@ -14,26 +14,51 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
-img{
+
+img {
     width: -webkit-fill-available;
 }
-#text{
+
+#text {
     margin-bottom: 10px;
 }
-#date_text{
+
+#date_text {
     margin-bottom: 10px;
 }
-#results{
+
+#results {
     margin-top: 10px;
 }
-#result_section{
+
+#result_section {
     display: none;
 }
-#back{
+
+#back {
     width: 100%;
     padding: 6px;
     margin-top: 6px;
     background: #2a2929;
     color: #fee91f;
     font-family: cursive;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background: #2a2929;
+    color: #fee91f;
 }

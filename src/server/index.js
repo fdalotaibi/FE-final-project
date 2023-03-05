@@ -2,9 +2,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
 const app = express()
- console.log(`Your API key is ${process.env.API_KEY}`);
+console.log(`Your API key is ${process.env.API_KEY}`);
 
 app.use(express.static('dist'))
 
@@ -20,6 +19,11 @@ app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
+// app.get('/test', function (req, res) {
+//     res.send(mockAPIResponse)
+// })
+
+app.get('/getKeys', function (req, res) {
+    const obj = {key: process.env.API_KEY, key2: process.env.pix_KEY}
+    res.send(obj)
 })

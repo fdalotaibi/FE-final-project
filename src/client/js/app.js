@@ -145,7 +145,7 @@ const getAPIKeys = async (url = '') => {
 
     try {
         const res = await response.json();
-        console.log("got the key from the server : ", res);
+        //console.log("got the key from the server : ", res);
 
         apiKey = res.key
         pixabayKey = res.key2
